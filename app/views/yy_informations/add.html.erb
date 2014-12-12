@@ -1,0 +1,87 @@
+<fieldset>
+  <legend>新建预约</legend>
+  <%= form_for(@yy_information) do |f| %>
+      <% if @yy_information.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@yy_information.errors.count, "error") %> prohibited this yy_information from being saved:</h2>
+
+            <ul>
+              <% @yy_information.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <table style="width:100%">
+        <%if @article.status =='可预约'%>
+        <tr>
+          <td width="30%"><%= f.label :仪器编号 %></td>
+          <td><%= @article.id %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器名称 %></td>
+          <td><%= @article.title %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器所在单位 %></td>
+          <td><%= @article.name %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :预约者姓名 %></td>
+          <td><%= @u.name %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :预约者所在单位 %></td>
+          <td><%= @u.unitname %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :预约者职务 %></td>
+          <td><%= f.text_field :zw %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :通讯地址 %></td>
+          <td><%= f.text_field :addr %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :邮政编码 %></td>
+          <td><%= f.text_field :postno %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :邮箱 %></td>
+          <td><%= @u.email %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :联系电话 %></td>
+          <td><%= @u.phone %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :使用目的 %></td>
+          <td><%= f.text_area :symd , :rows=>5 %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :使用要求 %></td>
+          <td><%= f.text_area :syyq , :rows=>5 %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :计划时间 %></td>
+          <td><%= f.text_area :jhsj , :rows=>5 %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :预约日期 %></td>
+          <td><%= f.datetime_select :yyrq %></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :操作日期 %></td>
+          <td><%= f.datetime_select :czrq %></td>
+        <tr>
+      </table>
+      <p> <%=submit_tag"预约确认" %> </p>
+            <%= link_to '返回', yy_informations_path %>
+        <% else %>
+            <table>
+            <tr>该仪器当前状态无法预约！<tr>
+            </table>
+            <%= link_to '返回', articles_url %>
+        <% end %>
+  <% end %>
+</fieldset>

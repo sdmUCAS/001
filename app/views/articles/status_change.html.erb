@@ -1,0 +1,55 @@
+<p> <%= link_to '返回查看', @article %> |<%= link_to '返回列表', articles_path %> </p>
+<fieldset>
+  <legend>编辑状态</legend>
+  <%= form_for(@article) do |f| %>
+      <% if @article.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+            <ul>
+              <% @article.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <table style="width:100%">
+        <tr>
+          <td width="30%"><%= f.label :仪器名称 %></td>
+          <td><%=@article.title%></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器英文名称 %></td>
+          <td><%=@article.Englishname%></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器所属研究单位 %></td>
+          <td><%=@article.name%></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :内容信息 %></td>
+          <td><%=@article.content%></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器型号 %></td>
+          <td><%=@article.eqspec%></td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :仪器状态 %></td>
+          <td>
+            <%= f.radio_button(:status, "可预约") %>
+            <%= label_tag(:authority0, "可预约") %>
+            <%= f.radio_button(:status, "正在使用") %>
+            <%= label_tag(:authority1, "正在使用") %>
+            <%= f.radio_button(:status, "维修中") %>
+            <%= label_tag(:authority2, "维修中") %>
+          </td>
+        <tr>
+        <tr>
+          <td width="30%"><%= f.label :可提供的机时 %></td>
+          <td><%= f.text_field :eqkgjs %></td>
+        <tr>
+      </table>
+      <p> <%=submit_tag" 状态更改确认" %> </p>
+  <% end %>
+
+</fieldset>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  eqid: MyString
+  shyy: MyString
+  jxjl: MyString
+  hjqk: MyString
+  wxf: MyString
+  wxr: MyString
+  Date_x: 2014-12-03 13:34:14
+  status: MyString
+
+two:
+  eqid: MyString
+  shyy: MyString
+  jxjl: MyString
+  hjqk: MyString
+  wxf: MyString
+  wxr: MyString
+  Date_x: 2014-12-03 13:34:14
+  status: MyString

@@ -1,0 +1,67 @@
+<%= form_for(@time_allocate) do |f| %>
+  <% if @time_allocate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@time_allocate.errors.count, "error") %> prohibited this time_allocate from being saved:</h2>
+
+      <ul>
+      <% @time_allocate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :仪器编号 %><br />
+    <%= f.text_field :eqid %>
+  </div>
+  <div class="field">
+    <%= f.label :仪器名称 %><br />
+    <%= f.text_field :eqname %>
+  </div>
+    <div class="field">
+    <%= f.label :仪器所属单位 %><br />
+    <%= f.text_field :eq_unitname %>
+    </div>
+  <div class="field">
+    <%= f.label :预约编号 %><br />
+    <%= f.text_field :yyid %>
+  </div>
+    <div class="field">
+      <%= f.label :使用人 %><br />
+      <%= f.text_field :user_name %>
+    </div>
+    <div class="field">
+      <%= f.label :使用人单位 %><br />
+      <%= f.text_field :user_unitname %>
+    </div>
+  <div class="field">
+    <%= f.label :预约日期 %><br />
+    <%= f.date_select :syrq %>
+  </div>
+    <div class="field">
+      <%= f.label :时段选择 %><br />
+      <%= f.time_select :start_time %>——
+      <%= f.time_select :end_time %>
+    </div>
+    <div class="field">
+      <%= f.label :总金额 %><br />
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label :状态 %><br />
+      <%= f.radio_button(:status,"未分配") %>
+      <%= f.label(:status, "未分配") %>
+      <%= f.radio_button(:status,"未支付") %>
+      <%= f.label(:status, "未支付") %>
+      <%= f.radio_button(:status,"已支付") %>
+      <%= f.label(:status, "已支付") %>
+    </div>
+    <div class="field">
+      <%= f.label :备注 %><br />
+      <%= f.text_field :bz %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

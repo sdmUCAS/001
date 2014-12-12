@@ -1,0 +1,76 @@
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table style="width:100%">
+      <tr>
+        <td width="30%"><%= f.label :登录名 %></td>
+        <td><%= f.text_field :logname %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :密码 %></td>
+        <td><%= f.password_field :password %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :再次输入密码 %></td>
+        <td><%= f.password_field :password_confirmation %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :姓名 %></td>
+        <td><%= f.text_field :name %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :所在单位 %></td>
+        <td><%= f.text_field :unitname %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :邮箱 %></td>
+        <td><%= f.text_field :email %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :联系电话 %></td>
+        <td><%= f.text_field :phone %></td>
+      <tr>
+        <%if @u=User.find_by_id(session[:user_id])%>
+          <%if @u.authority=='系统管理员'%>
+          <tr>
+            <td width="30%"><%= f.label :审核结果 %></td>
+            <td>
+              <%= f.radio_button(:authority, "未审核") %>
+              <%= label_tag(:authority0, "未审核") %>
+              <%= f.radio_button(:authority, "普通用户") %>
+              <%= label_tag(:authority1, "普通用户") %>
+              <%= f.radio_button(:authority, "所级管理员") %>
+              <%= label_tag(:authority2, "所级管理员") %>
+              <%= f.radio_button(:authority, "系统管理员") %>
+              <%= label_tag(:authority3, "系统管理员") %>
+            </td>
+          <tr>
+          <%end%>
+          <%if @u.authority=='所级管理员'%>
+              <tr>
+                <td width="30%"><%= f.label :审核结果 %></td>
+                <td>
+                  <%= f.radio_button(:authority, "未审核") %>
+                  <%= label_tag(:authority0, "未审核") %>
+                  <%= f.radio_button(:authority, "普通用户") %>
+                  <%= label_tag(:authority1, "普通用户") %>
+                  <%= f.radio_button(:authority, "所级管理员") %>
+                  <%= label_tag(:authority2, "所级管理员") %>
+                </td>
+              <tr>
+          <%end%>
+      <%end%>
+    </table>
+    <p> <%=submit_tag"保存" %> </p>
+<% end %>
+
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  eqid: MyString
+  eqname: MyString
+  yyid: MyString
+  syrq: MyString
+  bz: MyString
+
+two:
+  eqid: MyString
+  eqname: MyString
+  yyid: MyString
+  syrq: MyString
+  bz: MyString

@@ -1,0 +1,41 @@
+<fieldset>
+  <legend>反馈信息表</legend>
+
+  <table style="width:100%" border="0">
+  <tr>
+    <th>反馈编号</th>
+    <th>姓名</th>
+    <th>反馈日期</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+    <%@u=User.find_by_id(session[:user_id])%>
+<% @feedbacks.each do |feedback| %>
+        <%if @u.authority == '普通用户'%>
+        <%if feedback.name = @u.name%>
+         <tr>
+             <td><%= feedback.id %></td>
+             <td><%= feedback.name %></td>
+             <td><%= feedback.date %></td>
+             <td><%= link_to '查看', feedback %></td>
+             <td><%= link_to '编辑', edit_feedback_path(feedback) %></td>
+         </tr>
+        <% end %>
+        <% end %>
+        <%if @u.authority == '所级管理员'||@u.authority == '系统管理员'%>
+        <tr>
+             <td><%= feedback.id %></td>
+             <td><%= feedback.name %></td>
+             <td><%= feedback.date %></td>
+             <td><%= link_to '查看', feedback %></td>
+             <td><%= link_to '编辑', edit_feedback_path(feedback) %></td>
+             <td><%= button_to "删除", feedback,:method=>:delete, :class=>:destroy %></td>
+        </tr>
+        <% end %>
+<% end %>
+
+</table>
+<br />
+<%= link_to '新的反馈信息', add_feedback_path(@u) %>
+  </fieldset>

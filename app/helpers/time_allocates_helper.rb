@@ -1,0 +1,2 @@
+module TimeAllocatesHelper
+end

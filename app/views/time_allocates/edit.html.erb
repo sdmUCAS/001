@@ -1,0 +1,11 @@
+<fieldset>
+  <legend>编辑时间分配记录</legend>
+<%= render 'form' %>
+  <%@u=User.find_by_id(session[:user_id])%>
+<%= link_to '查看', @time_allocate %> |
+  <%if @u.authority=='普通用户'%>
+      <%= link_to '返回', yy_informations_url %>
+  <%else%>
+      <%= link_to '返回', time_allocates_url %>
+  <%end%>
+</fieldset>

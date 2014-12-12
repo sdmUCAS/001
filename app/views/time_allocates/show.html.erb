@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>机时分配编号:</b>
+  <%= @time_allocate.id %>
+</p>
+<p>
+  <b>仪器编号:</b>
+  <%= @time_allocate.eqid %>
+</p>
+
+<p>
+  <b>仪器名称:</b>
+  <%= @time_allocate.eqname %>
+</p>
+<p>
+  <b>仪器所属单位:</b>
+  <%= @time_allocate.eq_unitname %>
+</p>
+<p>
+  <b>预约编号:</b>
+  <%= @time_allocate.yyid %>
+</p>
+<p>
+  <b>使用人:</b>
+  <%= @time_allocate.yyid %>
+</p>
+<p>
+  <b>使用人所属单位:</b>
+  <%= @time_allocate.user_unitname %>
+</p>
+<p>
+  <b>预约日期:</b>
+  <%= @time_allocate.user_name %>
+</p>
+<p>
+  <b>预约时段:</b>
+  <%= @time_allocate.start_time %>——
+  <%= @time_allocate.end_time %>
+</p>
+<p>
+  <b>金额:</b>
+  <%= @time_allocate.price %>
+</p>
+
+<p>
+  <b>当前状态:</b>
+  <%= @time_allocate.status %>
+</p>
+<p>
+  <b>备注:</b>
+  <%= @time_allocate.bz %>
+</p>
+<%@u=User.find_by_id(session[:user_id])%>
+<%if @u.authority=='普通用户'%>
+    <%= link_to '支付', pay_time_allocate_path(@time_allocate) %>
+    <%= link_to '返回', yy_informations_url %>
+    <%else%>
+    <%= link_to '编辑', edit_time_allocate_path(@time_allocate) %> |
+    <%= link_to '返回', time_allocates_url %>
+<%end%>
+

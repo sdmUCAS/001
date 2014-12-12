@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen" />
+  <%= javascript_include_tag "jquery.min.js"%>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>中国科学院大型仪器设备共享平台</title>
+</head>
+<body>
+<style type="text/css">
+    *{padding:0;margin:0;outline:none;}
+    body{font-family:'MicroSoft Yahei',verdana,arial,tahoma;font-size:12px;color:#333;-webkit-text-size-adjust: none;}
+    ul,ol,dd{list-style:none}
+    a{text-decoration:none;word-wrap:break-word;outline:none;hide-focus:expression(this.hideFocus=true);transition:all 0.2s ease-in-out;-webkit-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;-ms-transition:all 0.2s ease-in-out;}
+    a:hover{text-decoration:none;}
+
+    /* lanmu-content */
+    .lanmu-content{width:160px;margin:40px auto 0 auto;float:left;}
+    .lanmu-content .listmore{display:block;text-align:center;height:25px;border-top:0;background:#eee;color:#1594d1;font:normal 12px/25px Tahoma,Verdana;}
+    .lanmu-list{display:block;}
+    .lanmu-list dt{display:block;height:40px;background:#0066CC;font:bold 14px/40px "宋体"; color:#fff;padding-left:10px;}
+    .lanmu-list dd{padding-top:2px;}
+    .lanmu-list dd a{display:block;height:33px;background:#D5DBD2;border-bottom:1px solid #eee;border-top:2px solid #fff;border-left:2px solid #999;border-right:1px solid #eee;font:normal 12px/33px Georgia "宋体"; color:#696969;padding-left:25px; line-height: 33px;}
+    .lanmu-list dd a:hover{padding-left:35px;}
+    .lanmu-list dd a:hover,.lanmu-list dd a.current{border-left:2px solid #1160ba;background-color:#f6f6f6;color:#1160ba;font-weight:bold;}
+</style>
+
+<div class="page_wrap clearfix">
+
+  <div class="top"></div>
+
+  <div class="header" >
+
+  </div>
+
+  <div class="container clearfix">
+
+    <div class="lanmu-content">
+      <dl class="lanmu-list">
+        <%if @u=User.find_by_id(session[:user_id])%>
+
+            <li>您好！<%= @u.name%></li>
+            <li>您的角色是<%= @u.authority%></li>
+            <%if @u.authority == '普通用户'%>
+                <dt>预约系统</dt>
+                <dd><%= link_to "首页", home_index_path %></dd>
+                <dd><%= link_to "仪器搜索", search_index_path%></dd>
+                <dd><%= link_to "仪器列表", articles_url %></dd>
+                <dd><%= link_to "个人预约", yy_informations_url %></dd>
+                <dd><%= link_to "个人账单", personal_account_time_allocate_path(@u) %></dd>
+                <dd><%= link_to "信息反馈", feedbacks_path %></dd>
+
+                <dd><%= link_to "个人注册信息修改", edit_user_path(@u) %></dd>
+                <dd><%= link_to "退出登录", logout_path, :method=>:delete%></dd>
+            <%end%>
+            <%if @u.authority == '所级管理员'%>
+                <dt>预约系统</dt>
+                <dd><%= link_to "首页", home_index_path %></dd>
+                <dd><%= link_to "仪器搜索", search_index_path %></dd>
+                <dd><%= link_to "仪器列表", articles_url %></dd>
+                <dt>维护系统</dt>
+                <dd><%= link_to "设备状态维护", status_maintain_article_path %></dd>
+                <dd><%= link_to "预约处理", yy_informations_url %></dd>
+                <dd><%= link_to "设备借用手续办理", time_allocates_url %></dd>
+                <dd><%= link_to "设备维护信息", eq_maintains_path %></dd>
+                <dd><%= link_to "院系账号管理", users_url %></dd>
+                <dd><%= link_to "反馈信息管理", feedbacks_path %></dd>
+
+                <dd><%= link_to "退出登录", logout_path, :method=>:delete%></dd>
+            <%end%>
+            <%if @u.authority == '系统管理员'%>
+                <dd><%= link_to "首页", home_index_path %></dd>
+
+                <dt>维护系统</dt>
+                <dd><%= link_to "设备状态维护", status_maintain_article_path %></dd>
+                <dd><%= link_to "预约处理", yy_informations_url %></dd>
+                <dd><%= link_to "设备借用手续办理", time_allocates_url %></dd>
+                <dd><%= link_to "设备维护信息", eq_maintains_path %></dd>
+                <dt>后台管理</dt>
+                <dd><%= link_to "仪器搜索", search_index_path %></dd>
+                <dd><%= link_to "设备管理", articles_url %></dd>
+                <dd><%= link_to "费用管理", home_index_path %></dd>
+                <dd><%= link_to "数据统计", home_index_path %></dd>
+                <dd><%= link_to "账号管理", users_url %></dd>
+                <dd><%= link_to "系统维护", home_index_path %></dd>
+
+                <dd><%= link_to "退出登录", logout_path, :method=>:delete%></dd>
+            <%end%>
+        <%else%>
+            <dd><%= link_to "用户登录", login_url %></dd>
+            <dd><%= link_to "用户注册", new_user_path %></dd>
+        <%end%>
+
+      </dl>
+    </div>
+
+    <%= yield %>
+  </div>
+
+  <div class="bottom clearfix">
+    <div class="footer clearfix"> Copyright, UCAS，SDM &nbsp;&#8226;&nbsp; Design
+      by Mr Walnut </div>
+  </div>
+</div>
+</body>
+</html>

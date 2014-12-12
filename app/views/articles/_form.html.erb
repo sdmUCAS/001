@@ -1,0 +1,91 @@
+﻿<%= form_for(@article) do |f| %>
+<% if @article.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<table style="width:100%">
+  <tr>
+    <td width="30%"><%= f.label :仪器名称 %></td>
+    <td><%= f.text_field :title %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :仪器英文名称 %></td>
+    <td><%= f.text_field :Englishname %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :仪器所属研究单位 %></td>
+    <td><%= f.text_field :name %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :内容信息 %></td>
+    <td><%= f.text_area :content, :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :仪器型号 %></td>
+    <td><%= f.text_field :eqspec %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :生产厂家 %></td>
+    <td><%= f.text_field :eqcj %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :生产日期 %></td>
+    <td><%= f.date_select :eqdate_0 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :仪器总价 %></td>
+    <td><%= f.text_field :eqvalue %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :使用单位代码 %></td>
+    <td><%= f.text_field :eqdwid %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :管理人员 %></td>
+    <td><%= f.text_field :eqm_person %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :管理人员电话 %></td>
+    <td><%= f.text_field :eqm_phone %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :管理人员邮箱 %></td>
+    <td><%= f.text_field :eq_email %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :技术指标 %></td>
+    <td><%= f.text_area :eqjszb , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :功能特色 %></td>
+    <td><%= f.text_area :eqgnts , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :适用范围 %></td>
+    <td><%= f.text_area :eqsyfw , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :应用成果 %></td>
+    <td><%= f.text_area :eqyycg , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :提供服务 %></td>
+    <td><%= f.text_area :eqtgfw , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :收费标准 %></td>
+    <td><%= f.text_area :eqsfbz , :rows=>5 %></td>
+  <tr>
+  <tr>
+    <td width="30%"><%= f.label :可提供的机时 %></td>
+    <td><%= f.text_field :eqkgjs %></td>
+  <tr>
+</table>
+<p> <%= f.submit %> </p>
+<% end %>

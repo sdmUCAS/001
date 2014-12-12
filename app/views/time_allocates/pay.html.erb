@@ -1,0 +1,71 @@
+<fieldset>
+  <legend>支付界面</legend>
+  <%= form_for(@time_allocate) do |f| %>
+      <% if @time_allocate.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@time_allocate.errors.count, "error") %> prohibited this time_allocate from being saved:</h2>
+
+            <ul>
+              <% @time_allocate.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :仪器编号 %>：
+        <%= @time_allocate.eqid %>
+      </div>
+      <div class="field">
+        <%= f.label :仪器名称 %>：
+        <%= @time_allocate.eqname %>
+      </div>
+      <div class="field">
+        <%= f.label :仪器所属单位 %>：
+        <%= @time_allocate.eq_unitname %>
+      </div>
+      <div class="field">
+        <%= f.label :预约编号 %>：
+        <%= @time_allocate.yyid %>
+      </div>
+      <div class="field">
+        <%= f.label :使用人 %>：
+        <%= @time_allocate.yyid %>
+      </div>
+      <div class="field">
+        <%= f.label :使用人单位 %><br />
+        <%= @time_allocate.user_unitname %>
+      </div>
+      <div class="field">
+        <%= f.label :使用时间 %>：
+        <%= @time_allocate.syrq %>
+      </div>
+      <div class="field">
+        <%= f.label :使用时段 %>：
+        <%= @time_allocate.start_time %>——
+        <%= @time_allocate.end_time %>
+      </div>
+      <div class="field">
+        <%= f.label :总金额 %>：
+        <%=@time_allocate.price %>
+      </div>
+      <div class="field">
+        <%= f.label :状态 %><br />
+        <%= f.radio_button(:status,"未分配") %>
+        <%= f.label(:status, "未分配") %>
+        <%= f.radio_button(:status,"未支付") %>
+        <%= f.label(:status, "未支付") %>
+        <%= f.radio_button(:status,"已支付") %>
+        <%= f.label(:status, "已支付") %>
+      </div>
+      <div class="field">
+        <%= f.label :备注 %>：
+        <%= @time_allocate.bz %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+  <%= link_to '退出', home_index_path %>
+</fieldset>

@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend>查看预约详细信息</legend>
+<p>
+  <b>预约编号:</b>
+  <%= @yy_information.yyid %>
+</p>
+
+<p>
+  <b>仪器编号:</b>
+  <%= @yy_information.eqid %>
+</p>
+  <p>
+    <b>仪器名称:</b>
+    <%= @yy_information.eqname %>
+  </p>
+<p>
+  <b>仪器所在单位:</b>
+  <%= @yy_information.eqdwid %>
+</p>
+
+<p>
+  <b>预约者姓名:</b>
+  <%= @yy_information.pname %>
+</p>
+
+<p>
+  <b>预约者所在单位:</b>
+  <%= @yy_information.dw %>
+</p>
+
+<p>
+  <b>预约者职务:</b>
+  <%= @yy_information.zw %>
+</p>
+
+<p>
+  <b>通讯地址:</b>
+  <%= @yy_information.addr %>
+</p>
+
+<p>
+  <b>邮政编码:</b>
+  <%= @yy_information.postno %>
+</p>
+
+<p>
+  <b>邮箱:</b>
+  <%= @yy_information.email %>
+</p>
+
+<p>
+  <b>联系电话:</b>
+  <%= @yy_information.phoneno %>
+</p>
+
+<p>
+  <b>使用目的:</b>
+  <%= @yy_information.symd %>
+</p>
+
+<p>
+  <b>使用要求:</b>
+  <%= @yy_information.syyq %>
+</p>
+
+<p>
+  <b>计划时间:</b>
+  <%= @yy_information.jhsj %>
+</p>
+
+<p>
+  <b>预约日期:</b>
+  <%= @yy_information.yyrq %>
+</p>
+
+<p>
+  <b>操作日期:</b>
+  <%= @yy_information.czrq %>
+</p>
+  <p>
+    <b>预约状态信息:</b>
+    <%= @yy_information.status %>
+  </p>
+  <%if  @yy_information.status=='未审核'%>
+  <%= link_to '编辑', edit_yy_information_path(@yy_information) %>
+      <%end%>
+<%= link_to '返回', yy_informations_path %>
+</fieldset>

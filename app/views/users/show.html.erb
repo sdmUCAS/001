@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend>查看注册用户详细信息</legend>
+  <p> 登录名：<%= @user.logname %></p>
+  <p> 编号：<%= @user.id %> | 姓名：<%= @user.name %> </p>
+  <p> 单位名： <%= @user.unitname %> </p>
+  <p> 邮箱： <%= @user.email %> </p>
+  <p> 联系电话： <%= @user.phone %> </p>
+  <p> 权限： <%= @user.authority %> </p>
+  <%= link_to '编辑', edit_user_path(@user) %> | <%= link_to '返回', users_path %>
+</fieldset>

@@ -1,0 +1,47 @@
+<fieldset>
+  <legend>编辑预约</legend>
+  <%= form_for(@yy_information) do |f| %>
+      <% if @yy_information.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@yy_information.errors.count, "error") %> prohibited this yy_information from being saved:</h2>
+
+            <ul>
+              <% @yy_information.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <table style="width:100%">
+        <tr>
+          <td width="30%"><%= f.label :当前状态 %></td>
+          <%@u=User.find_by_id(session[:user_id])%>
+          <%if @u.authority!='普通用户'%>
+          <td>
+            <%= f.radio_button(:status, "未审核") %>
+            <%= label_tag(:status0, "未审核") %>
+            <%= f.radio_button(:status, "审核通过") %>
+            <%= label_tag(:status1, "审核通过") %>
+            <%= f.radio_button(:status, "已分配机时") %>
+            <%= label_tag(:status2, "已分配机时") %>
+            <%= f.radio_button(:status, "已使用") %>
+            <%= label_tag(:status2, "已使用") %>
+            <%= f.radio_button(:status, "已缴费") %>
+            <%= label_tag(:status3, "已缴费") %>
+          </td>
+          <%else%>
+              <td>
+                <%= f.radio_button(:status, "已分配机时") %>
+                <%= label_tag(:status2, "已分配机时") %>
+                <%= f.radio_button(:status, "已使用") %>
+                <%= label_tag(:status2, "已使用") %>
+                <%= f.radio_button(:status, "已缴费") %>
+                <%= label_tag(:status3, "已缴费") %>
+              </td>
+          <% end %>
+        <tr>
+      </table>
+      <p> <%=submit_tag"状态更改确认" %> </p>
+  <% end %>
+  <%= link_to '返回', yy_informations_path %>
+</fieldset>

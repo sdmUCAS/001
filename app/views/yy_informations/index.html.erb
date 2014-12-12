@@ -1,0 +1,86 @@
+
+<fieldset>
+  <legend>预约列表</legend>
+
+  <table style="width:100%" border="0">
+    <tr>
+    <th>预约编号</th>
+    <th>仪器编号</th>
+    <th>仪器名称</th>
+    <th>预约者</th>
+    <th>预约日期</th>
+    <th>审核状态</th>
+    <th></th>
+    <th></th>
+    <th></th>
+      <th></th>
+    </tr>
+    <%@u=User.find_by_id(session[:user_id])%>
+    <% @yy_informations.each do |yy_information| %>
+        <%if @u.authority=='系统管理员'%>
+            <tr>
+              <td><%= yy_information.yyid %></td>
+              <td><%= yy_information.eqid %></td>
+              <td><%= yy_information.eqname %></td>
+              <td><%= yy_information.pname %></td>
+              <td><%= yy_information.yyrq %></td>
+              <td><%= yy_information.status %></td>
+              <td><%= link_to '编辑', edit_yy_information_path(yy_information) %></td>
+              <td><%= button_to "删除", yy_information,:method=>:delete, :class=>:destroy %></td>
+              <td><%= link_to '更改状态',status_change_yy_information_path(yy_information)%></td>
+              <%if yy_information.status=='已分配机时'%>
+                  <td><%= link_to '机时分配', add_time_allocate_path(yy_information) %></td>
+              <% end %>
+            </tr>
+        <%end%>
+        <% if @u.authority=='所级管理员'%>
+                <%if yy_information.eqdwid == @u.unitname%>
+                    <tr>
+                      <td><%= yy_information.yyid %></td>
+                      <td><%= yy_information.eqid %></td>
+                      <td><%= yy_information.eqname %></td>
+                      <td><%= yy_information.pname %></td>
+                      <td><%= yy_information.yyrq %></td>
+                      <td><%= yy_information.status %></td>
+                      <td><%= link_to '查看', yy_information %></td>
+                      <%if yy_information.status=='未审核'%>
+                          <td><%= link_to '编辑', edit_yy_information_path(yy_information) %></td>
+                          <td><%= button_to "删除", yy_information,:method=>:delete, :class=>:destroy %></td>
+                      <%else%>
+                          <td>审核通过不可修改</td>
+                          <td><%= link_to '更改状态',status_change_yy_information_path(yy_information)%></td>
+                          <%if yy_information.status=='已分配机时'%>
+                          <td><%= link_to '机时分配', add_time_allocate_path(yy_information) %></td>
+                          <% end %>
+                      <% end %>
+                    </tr>
+                <%end%>
+            <%end%>
+        <% if  @u.authority=='普通用户'%>
+            <%if yy_information.pname == @u.name%>
+            <tr>
+              <td><%= yy_information.yyid %></td>
+              <td><%= yy_information.eqid %></td>
+              <td><%= yy_information.eqname %></td>
+              <td><%= yy_information.pname %></td>
+              <td><%= yy_information.yyrq %></td>
+              <td><%= yy_information.status %></td>
+              <td><%= link_to '查看', yy_information %></td>
+              <%if yy_information.status=='未审核'%>
+                  <td><%= link_to '编辑', edit_yy_information_path(yy_information) %></td>
+                  <td><%= button_to "删除", yy_information,:method=>:delete, :class=>:destroy %></td>
+              <%else%>
+                  <td>审核通过不可修改</td>
+                  <%if yy_information.status=='已分配机时'||yy_information.status=='已使用'||yy_information.status=='已缴费'%>
+                  <td><%= link_to '更改状态',status_change_yy_information_path(yy_information)%></td>
+                  <% end %>
+                  <%if yy_information.status=='已分配机时'%>
+                  <td><%= link_to '查看机时分配', lookup_time_allocate_url(yy_information) %></td>
+                  <% end %>
+              <% end %>
+            </tr>
+            <% end %>
+            <%end%>
+    <% end %>
+  </table>
+</fieldset>

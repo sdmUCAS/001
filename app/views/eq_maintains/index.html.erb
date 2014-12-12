@@ -1,0 +1,32 @@
+<fieldset>
+  <legend>维护信息列表</legend>
+    <table style="width:100%" border="0">
+  <tr>
+    <th>检修编号</th>
+    <th>仪器编号</th>
+    <th>仪器名称</th>
+    <th>维修费</th>
+    <th>维修人</th>
+    <th>维修时间</th>
+    <th>设备状态</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eq_maintains.each do |eq_maintain| %>
+  <tr>
+    <td><%= eq_maintain.id %></td>
+    <td><%= eq_maintain.eqid %></td>
+    <td><%= eq_maintain.eqname %></td>
+    <td><%= eq_maintain.wxf %></td>
+    <td><%= eq_maintain.wxr %></td>
+    <td><%= eq_maintain.Date_x %></td>
+    <td><%= eq_maintain.status %></td>
+    <td><%= link_to '查看', eq_maintain %></td>
+    <td><%= link_to '编辑', edit_eq_maintain_path(eq_maintain) %></td>
+    <td><%= button_to "删除", eq_maintain,:method=>:delete, :class=>:destroy %></td>
+  </tr>
+<% end %>
+</table>
+  </fieldset>

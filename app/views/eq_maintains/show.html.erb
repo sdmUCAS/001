@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend>查看仪器详细信息</legend>
+<p>
+  <b>仪器编号:</b>
+  <%= @eq_maintain.eqid %>
+</p>
+
+<p>
+  <b>损坏原因:</b>
+  <%= @eq_maintain.shyy %>
+</p>
+
+<p>
+  <b>检修记录:</b>
+  <%= @eq_maintain.jxjl %>
+</p>
+
+<p>
+  <b>换件情况:</b>
+  <%= @eq_maintain.hjqk %>
+</p>
+
+<p>
+  <b>维修费:</b>
+  <%= @eq_maintain.wxf %>
+</p>
+<p>
+  <b>维修人:</b>
+  <%= @eq_maintain.wxr %>
+</p>
+<p>
+  <b>维修时间:</b>
+  <%= @eq_maintain.Date_x %>
+</p>
+<p>
+  <b>设备状态:</b>
+  <%= @eq_maintain.status %>
+</p>
+<%= link_to 'Edit', edit_eq_maintain_path(@eq_maintain) %> |
+<%= link_to 'Back', eq_maintains_path %>
+</fieldset>

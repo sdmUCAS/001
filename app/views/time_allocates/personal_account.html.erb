@@ -1,0 +1,42 @@
+<fieldset>
+  <legend>填写时间分配记录</legend>
+
+  <table style="width:100%" border="0">
+    <tr>
+      <th>机时分配编号</th>
+      <th>预约编号</th>
+      <th>仪器名称</th>
+      <th>仪器所属单位</th>
+      <th>仪器编号</th>
+      <th>使用人</th>
+      <th>使用所属单位</th>
+      <th>使用日期</th>
+      <th>状态</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <%@u=User.find_by_id(session[:user_id])%>
+    <% @time_allocates.each do |time_allocate| %>
+        <tr>
+          <td><%= time_allocate.id %></td>
+          <td><%= time_allocate.yyid %></td>
+          <td><%= time_allocate.eqname %></td>
+          <td><%= time_allocate.eq_unitname %></td>
+          <td><%= time_allocate.eqid %></td>
+          <td><%= time_allocate.user_name %></td>
+          <td><%= time_allocate.user_unitname %></td>
+          <td><%= time_allocate.syrq %></td>
+          <td><%= time_allocate.status %></td>
+          <td><%= link_to '查看', time_allocate %></td>
+          <%if @u.authority=='所级管理员'||@u.authority=='系统管理员'%>
+              <td><%= link_to '编辑', edit_time_allocate_path(time_allocate) %></td>
+              <td><%= button_to "删除", time_allocate,:method=>:delete, :class=>:destroy %></td>
+          <%end%>
+          <%if @u.authority=='普通用户'%>
+          <%end%>
+        </tr>
+    <% end %>
+  </table>
+  <br />
+</fieldset>

@@ -1,0 +1,36 @@
+﻿<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend>查看仪器详细信息</legend>
+  <br/>
+  <h2> 仪器名称：<%= @article.title %></h2>
+  <p> <b>English Name：</b> <%= @article.Englishname %> </p>
+  <p> 编号：<%= @article.id %> | 仪器所属研究单位：<%= @article.name %> </p>
+  <td><%=image_tag(@article.imageurl,:class => 'list_image')%></td>
+  <p> 详细信息： <%= @article.content %> </p>
+  <p> 仪器型号： <%= @article.eqspec %> </p>
+  <p> 生产厂家： <%= @article.eqcj %> </p>
+  <p> 生产日期： <%= @article.eqdate_0 %> </p>
+  <p> 仪器总价： <%= @article.eqvalue %> </p>
+  <p> 使用单位代码： <%= @article.eqdwid %> </p>
+  <p> 管理人员： <%= @article.eqm_person %> </p>
+  <p> 管理人员电话： <%= @article.eqm_phone %> </p>
+  <p> 管理人员邮箱： <%= @article.eq_email %> </p>
+  <p> 技术指标： <%= @article.eqjszb %> </p>
+  <p> 功能特色： <%= @article.eqgnts %> </p>
+  <p> 适用范围： <%= @article.eqsyfw %> </p>
+  <p> 应用成果： <%= @article.eqyycg %> </p>
+  <p> 提供服务： <%= @article.eqtgfw %> </p>
+  <p> 收费标准： <%= @article.eqsfbz %> </p>
+  <p> 当前状态： <%= @article.status %> </p>
+  <p> 可提供的机时： <%= @article.eqkgjs %> </p>
+  <p><%id=@article%></p>
+
+  <%if @u=User.find_by_id(session[:user_id])%>
+      <%if @u.authority=='所级管理员'||@u.authority=='系统管理员'%>
+         <%= link_to '编辑', edit_article_path(@article) %>
+      <%else %>
+          <%= link_to '预约',add_yy_information_path(@article) %> |
+      <%end%>
+  <%end%>
+  | <%= link_to '返回', articles_path %>
+</fieldset>

@@ -1,0 +1,25 @@
+<%@u=User.find_by_id(session[:user_id])%>
+<p id="notice"><%= notice %></p>
+<p>
+  <b>姓名:</b>
+  <%= @feedback.name %>
+</p>
+<p>
+  <b>内容:</b>
+  <%= @feedback.content %>
+</p>
+<p>
+  <b>日期:</b>
+  <%= @feedback.date %>
+</p>
+<p>
+  <b>回复:</b>
+  <%= @feedback.reply %>
+</p>
+<%if @u.authority == '普通用户'%>
+    <%= link_to '编辑', edit_feedback_path(@feedback) %> |
+<%end%>
+<%if @u.authority == '所级管理员'||@u.authority == '系统管理员'%>
+<%= link_to '编辑', edit_feedback_path(@feedback) %> |
+<%end%>
+<%= link_to '返回', feedbacks_path %>

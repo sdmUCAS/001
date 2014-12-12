@@ -1,0 +1,92 @@
+<%= form_for(@yy_information) do |f| %>
+  <% if @yy_information.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@yy_information.errors.count, "error") %> prohibited this yy_information from being saved:</h2>
+
+      <ul>
+      <% @yy_information.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table style="width:100%">
+      <tr>
+        <td width="30%"><%= f.label :仪器编号 %></td>
+        <td><%= f.text_field :eqid %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :仪器所在单位 %></td>
+        <td><%= f.text_field :eqdwid %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :预约者姓名 %></td>
+        <td><%= f.text_field :pname %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :预约者所在单位 %></td>
+        <td><%= f.text_field :dw %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :预约者职务 %></td>
+        <td><%= f.text_field :zw %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :通讯地址 %></td>
+        <td><%= f.text_field :addr %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :邮政编码 %></td>
+        <td><%= f.text_field :postno %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :邮箱 %></td>
+        <td><%= f.text_field :email %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :联系电话 %></td>
+        <td><%= f.text_field :phoneno %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :使用目的 %></td>
+        <td><%= f.text_area :symd , :rows=>5 %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :使用要求 %></td>
+        <td><%= f.text_area :syyq , :rows=>5 %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :计划时间 %></td>
+        <td><%= f.text_area :jhsj , :rows=>5 %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :预约日期 %></td>
+        <td><%= f.datetime_select :yyrq %></td>
+      <tr>
+      <tr>
+        <td width="30%"><%= f.label :操作日期 %></td>
+        <td><%= f.datetime_select :czrq %></td>
+      <tr>
+      <%if @u=User.find_by_id(session[:user_id])%>
+        <%if @u.authority=='所级管理员'||@u.authority=='系统管理员'%>
+              <tr>
+                <td width="30%"><%= f.label :当前状态 %></td>
+                <td>
+                  <%= f.radio_button(:status, "未审核") %>
+                  <%= label_tag(:status0, "未审核") %>
+                  <%= f.radio_button(:status, "审核通过") %>
+                  <%= label_tag(:status1, "审核通过") %>
+                  <%= f.radio_button(:status, "已分配机时") %>
+                  <%= label_tag(:status2, "已分配机时") %>
+                  <%= f.radio_button(:status, "已使用") %>
+                  <%= label_tag(:status2, "已使用") %>
+                  <%= f.radio_button(:status, "已缴费") %>
+                  <%= label_tag(:status3, "已缴费") %>
+                </td>
+              <tr>
+            <%end%>
+      <%end%>
+    </table>
+        <p> <%=submit_tag"预约确认" %> </p>
+<% end %>
+

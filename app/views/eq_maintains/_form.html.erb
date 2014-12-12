@@ -1,0 +1,54 @@
+<%= form_for(@eq_maintain) do |f| %>
+    <% if @eq_maintain.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@eq_maintain.errors.count, "error") %> prohibited this eq_maintain from being saved:</h2>
+          <ul>
+            <% @eq_maintain.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :仪器编号 %>：
+      <%= f.text_field :eqid %>
+    </div>
+    <div class="field">
+      <%= f.label :仪器名称 %>：
+      <%= f.text_field :eqname %>
+    </div>
+    <div class="field">
+      <%= f.label :损坏原因 %><br />
+      <%= f.text_field :shyy %>
+    </div>
+    <div class="field">
+      <%= f.label :检修记录 %><br />
+      <%= f.text_field :jxjl %>
+    </div>
+    <div class="field">
+      <%= f.label :换件情况 %><br />
+      <%= f.text_field :hjqk %>
+    </div>
+    <div class="field">
+      <%= f.label :维修费 %><br />
+      <%= f.text_field :wxf %>
+    </div>
+    <div class="field">
+      <%= f.label :维修人 %><br />
+      <%= f.text_field :wxr %>
+    </div>
+    <div class="field">
+      <%= f.label :维修时间 %><br />
+      <%= f.datetime_select :Date_x %>
+    </div>
+    <div class="field">
+      <%= f.label :设备状态 %><br />
+        <%= f.radio_button(:status, "未修复") %>
+        <%= label_tag(:authority0, "未修复") %>
+        <%= f.radio_button(:status, "已修复") %>
+        <%= label_tag(:authority1, "已修复") %>
+    </div>
+    <div class="actions">
+      <%= submit_tag"保存" %>
+    </div>
+<% end %>

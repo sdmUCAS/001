@@ -1,0 +1,24 @@
+<% if flash[:alert]%>
+<p id="notice"><%=flash[:alert]%></p>
+<%end%>
+<%=form_tag do%>
+<fieldset>
+        <legend>用户登录</legend>
+  <table style="width:100%">
+  <tr>
+    <td width="5%"><label for="logname">用户ID:</label></td>
+    <td><%= text_field_tag :logname, params[:logname] %></td>
+  <tr>
+    <tr>
+      <td width="5%"><label for="password">密码:</label></td>
+      <td><%= password_field_tag :password, params[:password] %></td>
+    <tr>
+      </table>
+  <p><%=submit_tag "登录"%></p>
+  <%= link_to '返回', home_index_path %>
+</fieldset>
+<%end%>
+
+
+
+

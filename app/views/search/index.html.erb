@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>仪器搜索</legend>
+  <%=form_tag "/search" do %>
+  搜索方式：
+  <%= radio_button_tag(:search_type, "name") %>
+  <%= label_tag(:age_child, "按仪器名称搜索") %>
+  <%= radio_button_tag(:search_type, "dw") %>
+  <%= label_tag(:age_adult, "按所在研究单位搜索") %>
+  <%= radio_button_tag(:search_type, "eqspec") %>
+  <%= label_tag(:age_adult, "按仪器型号搜索") %>
+  <%= radio_button_tag(:search_type, "status") %>
+  <%= label_tag(:age_adult, "按仪器状态搜索") %>
+  <%= radio_button_tag(:search_type, "type") %>
+  <%= label_tag(:age_adult, "按仪器类型搜索") %>
+<p>
+  <%= text_field :article,:title,:style=>"margin-top:-10px" ,:size=>40 %>
+  <%= submit_tag '给我搜' %>
+  <% end %>
+</p>
+  </fieldset>
